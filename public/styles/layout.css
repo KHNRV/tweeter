@@ -30,3 +30,8 @@ body {
 .logo {
   font-family: "Bungee", sans-serif;
 }
+
+main {
+  margin-left: 5%;
+  margin-right: 5%;
+}
