@@ -20,6 +20,10 @@ textarea {
   resize: none;
 }
 
+textarea::placeholder {
+  font-weight: 700;
+}
+
 textarea:focus {
   outline: none;
 }
