@@ -8,7 +8,7 @@
  * This function output a message of how long ago that tweet was posted
  * @author fearofawhackplanet (stackoverflow)
  * @param {*} current
- * @param {*} previous
+ * @param {*} prev
  */
 const timeDifferenceFromNow = function(prev) {
   const current = new Date();
@@ -36,7 +36,9 @@ const timeDifferenceFromNow = function(prev) {
     return "approximately " + Math.round(elapsed / msPerYear) + " years ago";
   }
 };
-
+/**
+ * Temporary dummy tweet database
+ */
 const tweetData = [
   {
     user: {
@@ -63,19 +65,23 @@ const tweetData = [
   },
 ];
 
-const createTweetElement = function(db) {
+/**
+ * Create a tweet element from a tweet object
+ * @param {*} tweetObj
+ */
+const createTweetElement = function(tweetObj) {
   const $tweet = $(`<article class="tweet">
   <header>
     <div class="user-meta">
-      <img src="${db.user.avatars}" class="avatar">
-      <div class="username">${db.user.name}</div>
+      <img src="${tweetObj.user.avatars}" class="avatar">
+      <div class="username">${tweetObj.user.name}</div>
     </div>
-    <div class="user-handle">${db.user.handle}</div>
+    <div class="user-handle">${tweetObj.user.handle}</div>
   </header>
-  <main>${db.content.text}
+  <main>${tweetObj.content.text}
   </main>
   <footer>
-    <div class="date">${timeDifferenceFromNow(db.created_at)}</div>
+    <div class="date">${timeDifferenceFromNow(tweetObj.created_at)}</div>
     <div class="action-bar">
       <img src="./icons/flag.png" alt="Flag">
       <img src="./icons/share.png" alt="Share">
@@ -87,6 +93,10 @@ const createTweetElement = function(db) {
   return $tweet;
 };
 
+/**
+ * Renders all the tweet objects in a given database
+ * @param {*} db
+ */
 const renderTweets = function(db) {
   $.each(db, (index, tweetObj) => {
     const $tweet = createTweetElement(tweetObj);
@@ -94,6 +104,27 @@ const renderTweets = function(db) {
   });
 };
 
+/**
+ * When the document is ready, render all the tweets
+ */
 $(document).ready(function() {
   renderTweets(tweetData);
+
+  $(function() {
+    $("form").on("submit", function(event) {
+      event.preventDefault();
+
+      console.log(this);
+      console.log($(this));
+      const newTweetContent = $(this).serialize();
+      $("form").trigger("reset");
+
+      console.log(newTweetContent);
+
+      $.post("/tweets", newTweetContent, function() {
+        $("#tweets-container").empty();
+        renderTweets(tweetData);
+      });
+    });
+  });
 });
