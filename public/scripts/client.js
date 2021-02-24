@@ -7,7 +7,6 @@
 /**
  * This function output a message of how long ago that tweet was posted
  * @author fearofawhackplanet (stackoverflow)
- * @param {*} current
  * @param {*} prev
  */
 const timeDifferenceFromNow = function(prev) {
@@ -79,19 +78,35 @@ const renderTweets = function(tweetsArr) {
 };
 
 /**
+ * This function when called append all the tweets in the database to the
+ * tweets-container
+ */
+const loadTweets = function() {
+  $.ajax("/tweets", { method: "GET" }).then(function(tweetsArr) {
+    renderTweets(tweetsArr);
+  });
+};
+
+/**
+ * This function when called prepend the most recent tweet in the database to the
+ * tweets-container
+ */
+const loadLastTweet = function() {
+  $.ajax("/tweets", { method: "GET" }).then(function(tweetsArr) {
+    $newTweet = createTweetElement(
+      tweetsArr.sort((a, b) => b.created_at - a.created_at)[0]
+    );
+    $("#tweets-container").prepend($newTweet);
+  });
+};
+
+/**
  * When the document is ready, render all the tweets
  */
 $(document).ready(function() {
-  const loadLastTweet = function() {
-    $.ajax("/tweets", { method: "GET" }).then(function(tweetsArr) {
-      $newTweet = createTweetElement(
-        tweetsArr.sort((a, b) => b.created_at - a.created_at)[0]
-      );
-      $("#tweets-container").prepend($newTweet);
-    });
-  };
   /**
-   * This function adds a tweet to the database if it fit the char count requirements
+   * This function adds a tweet to the database if it fits the character count
+   * requirements
    */
   $(function() {
     $("form").on("submit", function(event) {
@@ -115,10 +130,6 @@ $(document).ready(function() {
       }
     });
   });
-  const loadTweets = function() {
-    $.ajax("/tweets", { method: "GET" }).then(function(tweetsArr) {
-      renderTweets(tweetsArr);
-    });
-  };
+
   loadTweets();
 });

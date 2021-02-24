@@ -1,4 +1,8 @@
 $(document).ready(() => {
+  /**
+   * This function edit the DOM to display the number of character left to type
+   * by the user
+   */
   $("#tweet-text").on("input", function() {
     // Grab input and compute num of characters left
     const inputLength = $(this).val().length;
