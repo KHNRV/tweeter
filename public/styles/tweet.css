@@ -48,6 +48,7 @@ article.tweet > header > .user-meta > .username {
 article.tweet > main {
   padding-top: 25px;
   padding-bottom: 40px;
+  word-break: break-word;
 }
 
 article.tweet > footer {
