@@ -41,31 +41,31 @@ const timeDifferenceFromNow = function(prev) {
  * @param {*} tweetObj
  */
 const createTweetElement = function(tweetObj) {
-  const $tweet = $(`<article class="tweet">
-  <header>
-    <div class="user-meta">
-      <img src="${tweetObj.user.avatars}" class="avatar">
-      <div class="username">${tweetObj.user.name}</div>
-    </div>
-    <div class="user-handle">${tweetObj.user.handle}</div>
-  </header>
-  <main>${tweetObj.content.text}
-  </main>
-  <footer>
-    <div class="date">${timeDifferenceFromNow(tweetObj.created_at)}</div>
-    <div class="action-bar">
-      <img src="./icons/flag.png" alt="Flag">
-      <img src="./icons/share.png" alt="Share">
-      <img src="./icons/plus_one.png" alt="+1">
-    </div>
-  </footer>
-</article>`);
-  return $tweet;
+  return $(`
+  <article class="tweet">
+    <header>
+      <div class="user-meta">
+        <img src="${tweetObj.user.avatars}" class="avatar">
+        <div class="username">${tweetObj.user.name}</div>
+      </div>
+      <div class="user-handle">${tweetObj.user.handle}</div>
+    </header>
+    <main>${tweetObj.content.text}
+    </main>
+    <footer>
+      <div class="date">${timeDifferenceFromNow(tweetObj.created_at)}</div>
+      <div class="action-bar">
+        <img src="./icons/flag.png" alt="Flag">
+        <img src="./icons/share.png" alt="Share">
+        <img src="./icons/plus_one.png" alt="+1">
+      </div>
+    </footer>
+  </article>`);
 };
 
 /**
  * Renders all the tweet objects in a given database
- * @param {*} db
+ * @param {array} tweetsArr
  */
 const renderTweets = function(tweetsArr) {
   $.each(

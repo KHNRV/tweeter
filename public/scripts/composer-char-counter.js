@@ -1,6 +1,6 @@
 $(document).ready(() => {
   /**
-   * This function edit the DOM to display the number of character left to type
+   * This function edits the DOM to display the number of character left to type
    * by the user
    */
   $("#tweet-text").on("input", function() {
@@ -9,6 +9,7 @@ $(document).ready(() => {
     const numCharLeft = 140 - inputLength;
 
     // Select counter
+    // TODO: Change counter pinpoint for ID?
     const counter = $(this)
       .siblings(".new-tweet-statusbar")
       .children(".counter");

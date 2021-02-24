@@ -30,14 +30,11 @@ article.tweet > header > .user-meta {
   align-items: center;
 }
 
-article.tweet > header > .user-meta > * {
-  margin-right: 15px;
-}
-
 article.tweet > header > .user-meta > img {
   display: block;
   height: 50%;
   width: auto;
+  margin-right: 15px;
 }
 
 article.tweet > header > .user-meta > .username {

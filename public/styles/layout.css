@@ -27,6 +27,7 @@ body {
  * Additional CSS can be defined below or in other CSS files, as per instructions
  */
 
+/* TODO: Move to nav.css */
 .logo {
   font-family: "Bungee", sans-serif;
 }
