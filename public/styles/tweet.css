@@ -59,6 +59,7 @@ article.tweet > footer {
 
 article.tweet > footer > .action-bar {
   align-items: center;
+  visibility: hidden;
 }
 
 article.tweet > footer > .action-bar > img {
@@ -77,5 +78,9 @@ article.tweet:hover {
 }
 
 article.tweet:hover > header > .user-handle {
+  visibility: visible;
+}
+
+article.tweet:hover > footer > .action-bar {
   visibility: visible;
 }
