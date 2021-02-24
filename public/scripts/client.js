@@ -36,6 +36,12 @@ const timeDifferenceFromNow = function(prev) {
   }
 };
 
+const escape = function(str) {
+  let div = document.createElement("div");
+  div.appendChild(document.createTextNode(str));
+  return div.innerHTML;
+};
+
 /**
  * Create a tweet element from a tweet object
  * @param {*} tweetObj
@@ -50,7 +56,7 @@ const createTweetElement = function(tweetObj) {
       </div>
       <div class="user-handle">${tweetObj.user.handle}</div>
     </header>
-    <main>${tweetObj.content.text}
+    <main>${escape(tweetObj.content.text)}
     </main>
     <footer>
       <div class="date">${timeDifferenceFromNow(tweetObj.created_at)}</div>
@@ -83,20 +89,8 @@ const renderTweets = function(tweetsArr) {
  */
 const loadTweets = function() {
   $.ajax("/tweets", { method: "GET" }).then(function(tweetsArr) {
+    $("#tweets-container").empty();
     renderTweets(tweetsArr);
-  });
-};
-
-/**
- * This function when called prepend the most recent tweet in the database to the
- * tweets-container
- */
-const loadLastTweet = function() {
-  $.ajax("/tweets", { method: "GET" }).then(function(tweetsArr) {
-    $newTweet = createTweetElement(
-      tweetsArr.sort((a, b) => b.created_at - a.created_at)[0]
-    );
-    $("#tweets-container").prepend($newTweet);
   });
 };
 
@@ -125,11 +119,10 @@ $(document).ready(function() {
         $("form").trigger("reset");
 
         $.post("/tweets", newTweetContent, function() {
-          loadLastTweet();
+          loadTweets();
         });
       }
     });
   });
-
   loadTweets();
 });
