@@ -93,6 +93,23 @@ const loadTweets = function() {
     renderTweets(tweetsArr);
   });
 };
+/**
+ * This function append a given error message into the DOM. If no message is
+ * given, it will empty the display area
+ * @param {string} str
+ */
+const newTweetError = function(str) {
+  const $errorDisplayArea = $("#new-tweet").find(".error");
+  $errorDisplayArea.slideUp("slow");
+  $errorDisplayArea.promise().done(function() {
+    if (str) {
+      $errorDisplayArea.text(str);
+      $errorDisplayArea.slideDown("slow");
+    } else {
+      $errorDisplayArea.empty();
+    }
+  });
+};
 
 /**
  * When the document is ready, render all the tweets
@@ -107,13 +124,15 @@ $(document).ready(function() {
       event.preventDefault();
 
       const numOfChar = $("textarea").val().length;
+      newTweetError();
 
       if (numOfChar <= 0) {
         // ERROR: Type something
-        alert("You should type something first");
+        // alert("You should type something first");
+        newTweetError("You should type something first");
       } else if (numOfChar > 140) {
         // ERROR: User typed too much
-        alert("You typed too much");
+        newTweetError("You typed too much");
       } else {
         const newTweetContent = $(this).serialize();
         $("form").trigger("reset");

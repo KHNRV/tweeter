@@ -42,3 +42,9 @@ textarea:focus {
   color: white;
   padding: 5px 15px;
 }
+
+#new-tweet > form > .error {
+  color: red;
+  font-weight: lighter;
+  padding-top: 10px;
+}
