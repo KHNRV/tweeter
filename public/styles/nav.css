@@ -6,4 +6,17 @@ nav {
   display: flex;
   padding: 1.5em;
   align-items: center;
+  justify-content: space-between;
+}
+
+nav > .to-new-tweet > .arrow-down {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 5px;
+}
+
+nav > .to-new-tweet > a {
+  text-decoration: none;
+  color: inherit;
 }

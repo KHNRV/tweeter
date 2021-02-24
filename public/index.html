@@ -37,6 +37,15 @@
   <!-- Top nav bar (fixed) -->
   <nav>
     <span class="logo">tweeter</span>
+    <div class="to-new-tweet">
+      <a href="#new-tweet"><b>Write</b> a new tweet</a>
+      <div class="arrow-down">
+        <img src="./icons/keyboard_arrow_down.png" width="15px">
+        <img src="./icons/keyboard_arrow_down.png" width="15px">
+      </div>
+    </div>
+
+
   </nav>
   <header>
     <div>
@@ -49,7 +58,7 @@
   </header>
   <!-- Page-specific (main) content here -->
   <main class="container">
-    <section class="new-tweet">
+    <section class="new-tweet" id="new-tweet">
       <h2>Compose Tweet</h2>
       <form method="POST" action="/tweets">
         <textarea name="text" id="tweet-text" placeholder="What are you humming about?"></textarea>
