@@ -36,34 +36,6 @@ const timeDifferenceFromNow = function(prev) {
     return "approximately " + Math.round(elapsed / msPerYear) + " years ago";
   }
 };
-/**
- * Temporary dummy tweet database
- */
-const tweetData = [
-  {
-    user: {
-      name: "Newton",
-      avatars: "https://i.imgur.com/73hZDYK.png",
-      handle: "@SirIsaac",
-    },
-    content: {
-      text:
-        "If I have seen further it is by standing on the shoulders of giants",
-    },
-    created_at: 1461116232227,
-  },
-  {
-    user: {
-      name: "Descartes",
-      avatars: "https://i.imgur.com/nlhLi3I.png",
-      handle: "@rd",
-    },
-    content: {
-      text: "Je pense , donc je suis",
-    },
-    created_at: 1461113959088,
-  },
-];
 
 /**
  * Create a tweet element from a tweet object
@@ -89,7 +61,6 @@ const createTweetElement = function(tweetObj) {
     </div>
   </footer>
 </article>`);
-
   return $tweet;
 };
 
@@ -97,18 +68,21 @@ const createTweetElement = function(tweetObj) {
  * Renders all the tweet objects in a given database
  * @param {*} db
  */
-const renderTweets = function(db) {
-  $.each(db, (index, tweetObj) => {
-    const $tweet = createTweetElement(tweetObj);
-    $("#tweets-container").append($tweet);
-  });
+const renderTweets = function(tweetsArr) {
+  $.each(
+    tweetsArr.sort((a, b) => b.created_at - a.created_at),
+    (index, tweetObj) => {
+      const $tweet = createTweetElement(tweetObj);
+      $("#tweets-container").append($tweet);
+    }
+  );
 };
 
 /**
  * When the document is ready, render all the tweets
  */
 $(document).ready(function() {
-  renderTweets(tweetData);
+  // renderTweets(tweetData);
 
   $(function() {
     $("form").on("submit", function(event) {
@@ -123,8 +97,15 @@ $(document).ready(function() {
 
       $.post("/tweets", newTweetContent, function() {
         $("#tweets-container").empty();
-        renderTweets(tweetData);
+        loadTweets();
       });
     });
   });
+  const loadTweets = function() {
+    $.ajax("/tweets", { method: "GET" }).then(function(tweetsArr) {
+      renderTweets(tweetsArr);
+    });
+  };
+
+  loadTweets();
 });
