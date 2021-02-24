@@ -82,23 +82,30 @@ const renderTweets = function(tweetsArr) {
  * When the document is ready, render all the tweets
  */
 $(document).ready(function() {
-  // renderTweets(tweetData);
-
+  /**
+   * This function adds a tweet to the database if it fit the char count requirements
+   */
   $(function() {
     $("form").on("submit", function(event) {
       event.preventDefault();
 
-      console.log(this);
-      console.log($(this));
-      const newTweetContent = $(this).serialize();
-      $("form").trigger("reset");
+      const numOfChar = $("textarea").val().length;
 
-      console.log(newTweetContent);
+      if (numOfChar <= 0) {
+        // ERROR: Type something
+        alert("You should type something first");
+      } else if (numOfChar > 140) {
+        // ERROR: User typed too much
+        alert("You typed too much");
+      } else {
+        const newTweetContent = $(this).serialize();
+        $("form").trigger("reset");
 
-      $.post("/tweets", newTweetContent, function() {
-        $("#tweets-container").empty();
-        loadTweets();
-      });
+        $.post("/tweets", newTweetContent, function() {
+          $("#tweets-container").empty();
+          loadTweets();
+        });
+      }
     });
   });
   const loadTweets = function() {
