@@ -82,6 +82,14 @@ const renderTweets = function(tweetsArr) {
  * When the document is ready, render all the tweets
  */
 $(document).ready(function() {
+  const loadLastTweet = function() {
+    $.ajax("/tweets", { method: "GET" }).then(function(tweetsArr) {
+      $newTweet = createTweetElement(
+        tweetsArr.sort((a, b) => b.created_at - a.created_at)[0]
+      );
+      $("#tweets-container").prepend($newTweet);
+    });
+  };
   /**
    * This function adds a tweet to the database if it fit the char count requirements
    */
@@ -102,8 +110,7 @@ $(document).ready(function() {
         $("form").trigger("reset");
 
         $.post("/tweets", newTweetContent, function() {
-          $("#tweets-container").empty();
-          loadTweets();
+          loadLastTweet();
         });
       }
     });
@@ -113,6 +120,5 @@ $(document).ready(function() {
       renderTweets(tweetsArr);
     });
   };
-
   loadTweets();
 });
