@@ -93,3 +93,7 @@ const renderTweets = function(db) {
     $("#tweets-container").append($tweet);
   });
 };
+
+$(document).ready(function() {
+  renderTweets(tweetData);
+});
