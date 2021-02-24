@@ -1,11 +1,12 @@
 body > header {
   height: 400px;
-  width: vmax;
+  width: 100%;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   background-color: #c9a518;
   background-image: url("../images/asfalt-light.png");
-  /* This is mostly intended for prototyping; please download the pattern and re-host for production environments. Thank you! */
+
+  margin-top: 120px;
 }

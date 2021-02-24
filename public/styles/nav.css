@@ -1,12 +1,15 @@
 nav {
   height: 120px;
-  width: vmax;
+  width: 100%;
   background-color: #4056a1;
   color: white;
   display: flex;
   padding: 1.5em;
   align-items: center;
   justify-content: space-between;
+
+  position: fixed;
+  top: 0;
 }
 
 nav > .to-new-tweet > .arrow-down {
