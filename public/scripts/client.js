@@ -136,7 +136,7 @@ $(document).ready(function() {
       } else {
         const newTweetContent = $(this).serialize();
         $("form").trigger("reset");
-
+        $("#new-tweet").find(".counter").text("140");
         $.post("/tweets", newTweetContent, function() {
           loadTweets();
         });
