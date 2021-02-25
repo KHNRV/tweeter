@@ -74,7 +74,7 @@ article.tweet > footer > .date {
 }
 
 article.tweet:hover {
-  box-shadow: 5px 10px;
+  box-shadow: 5px 10px #4056a1;
   filter: drop-shadow(0.2px 0.2px 0 black);
   -webkit-filter: drop-shadow(0.2px 0.2px 0 black);
 }
