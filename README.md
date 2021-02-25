@@ -6,7 +6,7 @@ This repository is the starter code for the project: Students will fork and clon
 
 ## Screenshot
 
-![localhost_8080_ (2)](./docs/localhost_8080_ (2).png)![localhost_8080_ (1)](./docs/localhost_8080_ (1).png)
+![localhost_8080_ (2)](./docs/desktop.png)![localhost_8080_ (1)](./docs/mobile.png)
 
 ## Getting Started
 
