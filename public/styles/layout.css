@@ -21,6 +21,9 @@ body {
   background-color: #f4f1ec;
   font-family: "Source Sans Pro", sans-serif;
   font-size: 24px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 /*
@@ -35,4 +38,20 @@ body {
 main {
   margin-left: 5%;
   margin-right: 5%;
+  max-width: 910px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+@media screen and (min-width: 1024px) {
+  body {
+    flex-direction: row;
+  }
+  body > header {
+    margin-left: 20%;
+  }
+  body > main {
+    margin-right: 10%;
+  }
 }

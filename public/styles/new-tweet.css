@@ -48,3 +48,9 @@ textarea:focus {
   font-weight: lighter;
   padding-top: 10px;
 }
+
+@media screen and (min-width: 1024px) {
+  section.new-tweet {
+    margin-top: 150px;
+  }
+}

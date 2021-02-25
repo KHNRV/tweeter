@@ -46,6 +46,8 @@ article.tweet > main {
   padding-top: 25px;
   padding-bottom: 40px;
   word-break: break-word;
+  align-items: flex-start;
+  text-align: left;
 }
 
 article.tweet > footer {

@@ -7,6 +7,16 @@ body > header {
   align-items: center;
   background-color: #c9a518;
   background-image: url("../images/asfalt-light.png");
-
   margin-top: 120px;
+  align-self: flex-start;
+}
+
+@media screen and (min-width: 1024px) {
+  body > header {
+    width: 600px;
+    height: 400px;
+    position: -webkit-sticky;
+    position: sticky;
+    top: 180px;
+  }
 }
