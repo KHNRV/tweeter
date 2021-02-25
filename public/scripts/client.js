@@ -35,7 +35,10 @@ const timeDifferenceFromNow = function(prev) {
     return "approximately " + Math.round(elapsed / msPerYear) + " years ago";
   }
 };
-
+/**
+ * Escape HTML unsafe characters
+ * @param {string} str
+ */
 const escape = function(str) {
   let div = document.createElement("div");
   div.appendChild(document.createTextNode(str));
@@ -44,7 +47,7 @@ const escape = function(str) {
 
 /**
  * Create a tweet element from a tweet object
- * @param {*} tweetObj
+ * @param {object} tweetObj
  */
 const createTweetElement = function(tweetObj) {
   return $(`
@@ -127,11 +130,8 @@ $(document).ready(function() {
       newTweetError();
 
       if (numOfChar <= 0) {
-        // ERROR: Type something
-        // alert("You should type something first");
         newTweetError("You should type something first");
       } else if (numOfChar > 140) {
-        // ERROR: User typed too much
         newTweetError("You typed too much");
       } else {
         const newTweetContent = $(this).serialize();
